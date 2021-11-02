@@ -134,7 +134,7 @@ def format_list_length(list, wanted_length):
     
     return new_list
 
-def get_array_from_files(parent_path, experiment_file_number, length_of_lists):  # "Lab1/Python lab1/Raw_data_exp"
+def get_array_from_files(parent_path, experiment_file_number, length_of_lists, error_compensation):  # "Lab1/Python lab1/Raw_data_exp"
     filepaths = get_filepaths(parent_path)
     experiment_lists = [] # shape [[t_list1, x_list1, y_list1, v_list1], [t_list2, x_list2, y_list2, [v21, v22, v23]] , ....]
     t_lists = []
@@ -155,10 +155,10 @@ def get_array_from_files(parent_path, experiment_file_number, length_of_lists): 
     comp_y_list = y_lists[experiment_file_number]
     comp_v_list = v_lists[experiment_file_number]
 
-    formated_t_array = np.array(format_list_length(comp_t_list, length_of_lists))
-    formated_x_array = np.array(format_list_length(comp_x_list, length_of_lists))
-    formated_y_array = np.array(format_list_length(comp_y_list, length_of_lists))
-    formated_v_array = np.array(format_list_length(comp_v_list, length_of_lists))
+    formated_t_array = np.array(format_list_length(comp_t_list, length_of_lists)) + error_compensation
+    formated_x_array = np.array(format_list_length(comp_x_list, length_of_lists)) + error_compensation
+    formated_y_array = np.array(format_list_length(comp_y_list, length_of_lists)) + error_compensation
+    formated_v_array = np.array(format_list_length(comp_v_list, length_of_lists)) + error_compensation
     
     return formated_t_array, formated_x_array, formated_y_array, formated_v_array
 

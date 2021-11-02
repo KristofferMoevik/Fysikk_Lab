@@ -105,14 +105,29 @@ pi = 3.15169264
 M = 0.031
 r = 0.011
 
-def t_x(n, v_x):
+def t_x(Nx, v_x):
     time = 0
     times = np.array([0])
-    for i in range(1,n):
+    for i in range(1,Nx):
         delta_t = (2*dx)/(v_x[i-1] + v_x[i])
         time = time + delta_t
         times = np.append(times, [time])
     return times
+
+def x_t(Nx, v_x):
+    time = 0
+    times = np.array([0])
+    for i in range(1,Nx):
+        delta_t = (2*dx)/(v_x[i-1] + v_x[i])
+        time = time + delta_t
+        times = np.append(times, [time])
+    x = 0
+    for xt in range(0,Nx):
+        for i in range(0, len(times)):
+            t = times[i]
+            if t >= time:
+                x=i
+                return x
 
 
 K = np.asarray( d2y/(((1 + dy**2)**(3/2))) )
@@ -130,10 +145,11 @@ f_N = np.abs(f/N)
 #         print("itteration : " , i)
 #         print("   f/N : ", f_N[i], "   N : ", N[i], "   f : ", f[i], "   dy: ", dy[i])
 
-comp_t_list, comp_x_list, comp_y_list, comp_v_list = data_util.get_array_from_files("Lab1/Python lab1/Raw_data_exp", 1, 1401)
+comp_t_array, comp_x_array, comp_y_array, comp_v_array = data_util.get_array_from_files("Lab1/Python lab1/Raw_data_exp", 5, 1401, 0.03)
 #Eksempel: Plotter banens form y(x)
 baneform = plt.figure('y(x)',figsize=(12,6))
 plt.plot(x,y,xfast,yfast,'*')
+plt.plot(comp_x_array, comp_y_array, xfast,yfast,'r*')
 plt.title('Banens form')
 plt.xlabel('$x$ (m)',fontsize=20)
 plt.ylabel('$y(x)$ (m)',fontsize=20)
@@ -147,6 +163,7 @@ plt.show()
 
 v_x_plt = plt.figure('v(x)',figsize=(12,6))
 plt.plot(x,v_x)
+plt.plot(comp_x_array, comp_v_array)
 plt.title('v(x)')
 plt.xlabel('$x$ (m)',fontsize=20)
 plt.ylabel('$y(x)$ (m)',fontsize=20)
@@ -194,7 +211,8 @@ plt.grid()
 plt.show()
 
 v_t_plt = plt.figure('v(t)',figsize=(12,6))
-plt.plot(t_x(Nx, v_x),v_x)
+plt.plot(x_t(Nx, v_x),v_x)
+plt.plot(comp_t_array,comp_v_array)
 plt.title('v(t)')
 plt.xlabel('$t$ (m)',fontsize=20)
 plt.ylabel('$|v(t)|$ (m)',fontsize=20)
