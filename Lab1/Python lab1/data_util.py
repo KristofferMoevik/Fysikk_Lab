@@ -1,6 +1,7 @@
 import os
 import math
 import pathlib
+import numpy as np
 
 def get_filepaths(folder):
     root_dir = folder
@@ -117,7 +118,23 @@ def get_mean_experiment_lists(experiment_list):
     for experiment in experiment_list:
         a=0
 
-def get_list_from_files(parent_path, experiment_file_number):  # "Lab1/Python lab1/Raw_data_exp"
+def format_list_length(list, wanted_length):
+    old_length = len(list)
+    partition_size = wanted_length // old_length
+    partition_modulo = wanted_length % old_length
+    new_list = []
+    for i in range(0, wanted_length):
+        
+        if(i < wanted_length - partition_modulo):
+            old_element = i // partition_size
+            new_list.append(list[old_element])
+        elif(i >= wanted_length - partition_modulo):
+            old_element = (i - partition_modulo) // partition_size
+            new_list.append(list[old_element])
+    
+    return new_list
+
+def get_list_from_files(parent_path, experiment_file_number, length_of_lists):  # "Lab1/Python lab1/Raw_data_exp"
     filepaths = get_filepaths(parent_path)
     experiment_lists = [] # shape [[t_list1, x_list1, y_list1, v_list1], [t_list2, x_list2, y_list2, [v21, v22, v23]] , ....]
     t_lists = []
@@ -137,8 +154,11 @@ def get_list_from_files(parent_path, experiment_file_number):  # "Lab1/Python la
     comp_x_list = x_lists[experiment_file_number]
     comp_y_list = y_lists[experiment_file_number]
     comp_v_list = v_lists[experiment_file_number]
-    
-    return comp_t_list, comp_x_list, comp_y_list, comp_v_list
 
-comp_t_list, comp_x_list, comp_y_list, comp_v_list = get_list_from_files("Lab1/Python lab1/Raw_data_exp", 1)
-a= 0
+    formated_t_array = np.array(format_list_length(comp_t_list, length_of_lists))
+    formated_x_array = np.array(format_list_length(comp_x_list, length_of_lists))
+    formated_y_array = np.array(format_list_length(comp_y_list, length_of_lists))
+    formated_v_array = np.array(format_list_length(comp_v_list, length_of_lists))
+    
+    return formated_t_array, formated_x_array, formated_y_array, formated_v_array
+

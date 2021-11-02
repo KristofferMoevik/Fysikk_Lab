@@ -130,7 +130,7 @@ f_N = np.abs(f/N)
 #         print("itteration : " , i)
 #         print("   f/N : ", f_N[i], "   N : ", N[i], "   f : ", f[i], "   dy: ", dy[i])
 
-comp_t_list, comp_x_list, comp_y_list, comp_v_list = data_util.get_list_from_files("Lab1/Python lab1/Raw_data_exp", 1)
+comp_t_list, comp_x_list, comp_y_list, comp_v_list = data_util.get_list_from_files("Lab1/Python lab1/Raw_data_exp", 1, 1401)
 #Eksempel: Plotter banens form y(x)
 baneform = plt.figure('y(x)',figsize=(12,6))
 plt.plot(x,y,xfast,yfast,'*')
