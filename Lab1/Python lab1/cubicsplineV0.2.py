@@ -121,13 +121,15 @@ def x_t(Nx, v_x):
         delta_t = (2*dx)/(v_x[i-1] + v_x[i])
         time = time + delta_t
         times = np.append(times, [time])
-    x = 0
+    x_t_list = []
     for xt in range(0,Nx):
-        for i in range(0, len(times)):
-            t = times[i]
+        x = 0
+        for ii in range(0, len(times)):
+            t = times[ii]
             if t >= time:
-                x=i
-                return x
+                x_t_list.append(ii)
+                break
+    return x_t_list
 
 
 K = np.asarray( d2y/(((1 + dy**2)**(3/2))) )
