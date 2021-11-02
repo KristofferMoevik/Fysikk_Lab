@@ -68,6 +68,7 @@ yfast = np.array([
     0.162, 
     0.128, 
     0.060])
+
 # Omregning fra mm til m:
 # xfast = xfast/1000
 # yfast = yfast/1000
