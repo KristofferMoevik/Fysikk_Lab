@@ -18,6 +18,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import CubicSpline
+import data_util
 
 # Horisontal avstand mellom festepunktene er 0.200 m
 h = 0.200
@@ -129,6 +130,7 @@ f_N = np.abs(f/N)
 #         print("itteration : " , i)
 #         print("   f/N : ", f_N[i], "   N : ", N[i], "   f : ", f[i], "   dy: ", dy[i])
 
+comp_t_list, comp_x_list, comp_y_list, comp_v_list = data_util.get_list_from_files("Lab1/Python lab1/Raw_data_exp", 1)
 #Eksempel: Plotter banens form y(x)
 baneform = plt.figure('y(x)',figsize=(12,6))
 plt.plot(x,y,xfast,yfast,'*')
