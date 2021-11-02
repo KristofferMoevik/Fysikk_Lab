@@ -126,7 +126,7 @@ def x_t(Nx, v_x):
         x = 0
         for ii in range(0, len(times)):
             t = times[ii]
-            if t >= time:
+            if t >= times[xt]:
                 x_t_list.append(ii)
                 break
     return x_t_list
@@ -147,7 +147,7 @@ f_N = np.abs(f/N)
 #         print("itteration : " , i)
 #         print("   f/N : ", f_N[i], "   N : ", N[i], "   f : ", f[i], "   dy: ", dy[i])
 
-comp_t_array, comp_x_array, comp_y_array, comp_v_array = data_util.get_array_from_files("Lab1/Python lab1/Raw_data_exp", 5, 1401, 0.03)
+comp_t_array, comp_x_array, comp_y_array, comp_v_array = data_util.get_array_from_files("Lab1/Python lab1/Raw_data_exp", 4, 1401, 0.03)
 #Eksempel: Plotter banens form y(x)
 baneform = plt.figure('y(x)',figsize=(12,6))
 plt.plot(x,y,xfast,yfast,'*')
@@ -213,8 +213,7 @@ plt.grid()
 plt.show()
 
 v_t_plt = plt.figure('v(t)',figsize=(12,6))
-plt.plot(x_t(Nx, v_x),v_x)
-plt.plot(comp_t_array,comp_v_array)
+plt.plot(t_x(Nx, v_x),v_x)
 plt.title('v(t)')
 plt.xlabel('$t$ (m)',fontsize=20)
 plt.ylabel('$|v(t)|$ (m)',fontsize=20)

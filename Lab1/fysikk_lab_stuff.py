@@ -73,7 +73,7 @@ for i in range(2,len(lines)):
     np.append(v_track, data[3])
 """
 
-data = np.loadtxt("1.txt", float, delimiter=';', usecols=[0, 1, 2, 3], skiprows=2)
+data = np.loadtxt("Lab1\Python lab1\Raw_data_exp\Eksp4_t_x_y_v.txt", float, delimiter=';', usecols=[0, 1, 2, 3], skiprows=2)
 for dataline in data:
 
         np.append(t_track, dataline[0])

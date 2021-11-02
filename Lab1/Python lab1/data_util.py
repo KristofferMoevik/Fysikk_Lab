@@ -7,12 +7,24 @@ def get_filepaths(folder):
     root_dir = folder
     file_set = set()
 
+
     for dir_, _, files in os.walk(root_dir):
         for file_name in files:
             rel_dir = os.path.relpath(dir_, root_dir)
             rel_file = os.path.join(rel_dir, file_name)
             rel_file = "Lab1/Python lab1/Raw_data_exp" + rel_file[1:]
             file_set.add(rel_file)
+
+    file_set = {'Lab1/Python lab1/Raw_data_exp\\Eksp1_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp2_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp3_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp4_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp5_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp6_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp7_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp8_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp9_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp\\Eksp10_t_x_y_v.txt'}
     return file_set
 
 def get_final_speed(filepath):
@@ -155,10 +167,10 @@ def get_array_from_files(parent_path, experiment_file_number, length_of_lists, e
     comp_y_list = y_lists[experiment_file_number]
     comp_v_list = v_lists[experiment_file_number]
 
-    formated_t_array = np.array(format_list_length(comp_t_list, length_of_lists)) + error_compensation
-    formated_x_array = np.array(format_list_length(comp_x_list, length_of_lists)) + error_compensation
-    formated_y_array = np.array(format_list_length(comp_y_list, length_of_lists)) + error_compensation
-    formated_v_array = np.array(format_list_length(comp_v_list, length_of_lists)) + error_compensation
+    formated_t_array = np.array(format_list_length(comp_t_list, length_of_lists))
+    formated_x_array = np.array(format_list_length(comp_x_list, length_of_lists))
+    formated_y_array = np.array(format_list_length(comp_y_list, length_of_lists))
+    formated_v_array = np.array(format_list_length(comp_v_list, length_of_lists))
     
     return formated_t_array, formated_x_array, formated_y_array, formated_v_array
 
