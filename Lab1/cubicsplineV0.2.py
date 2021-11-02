@@ -199,6 +199,14 @@ plt.ylabel('$|v(t)|$ (m)',fontsize=20)
 plt.grid()
 plt.show()
 
+t_x_plt = plt.figure('t(x)',figsize=(12,6))
+plt.plot(t_x(Nx, v_x), x)
+plt.title('t(x)')
+plt.xlabel('$t(s)$ (m)',fontsize=20)
+plt.ylabel('$|x|$ (m)',fontsize=20)
+plt.grid()
+plt.show()
+
 
 print('Antall forsøk',attempts)
 print('Festepunkthøyder (m)',yfast)
