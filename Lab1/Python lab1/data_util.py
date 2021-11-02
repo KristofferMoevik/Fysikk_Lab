@@ -134,7 +134,7 @@ def format_list_length(list, wanted_length):
     
     return new_list
 
-def get_list_from_files(parent_path, experiment_file_number, length_of_lists):  # "Lab1/Python lab1/Raw_data_exp"
+def get_array_from_files(parent_path, experiment_file_number, length_of_lists):  # "Lab1/Python lab1/Raw_data_exp"
     filepaths = get_filepaths(parent_path)
     experiment_lists = [] # shape [[t_list1, x_list1, y_list1, v_list1], [t_list2, x_list2, y_list2, [v21, v22, v23]] , ....]
     t_lists = []
