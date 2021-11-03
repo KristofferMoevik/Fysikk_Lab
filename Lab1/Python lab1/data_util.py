@@ -15,7 +15,7 @@ def get_filepaths(folder):
             rel_file = "Lab1/Python lab1/Raw_data_exp" + rel_file[1:]
             file_set.add(rel_file)
 
-    file_set = {'Lab1/Python lab1/Raw_data_exp\\Eksp1_t_x_y_v.txt', 
+    file_set = ['Lab1/Python lab1/Raw_data_exp\\Eksp1_t_x_y_v.txt', 
     'Lab1/Python lab1/Raw_data_exp\\Eksp2_t_x_y_v.txt', 
     'Lab1/Python lab1/Raw_data_exp\\Eksp3_t_x_y_v.txt', 
     'Lab1/Python lab1/Raw_data_exp\\Eksp4_t_x_y_v.txt', 
@@ -24,7 +24,7 @@ def get_filepaths(folder):
     'Lab1/Python lab1/Raw_data_exp\\Eksp7_t_x_y_v.txt', 
     'Lab1/Python lab1/Raw_data_exp\\Eksp8_t_x_y_v.txt', 
     'Lab1/Python lab1/Raw_data_exp\\Eksp9_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp10_t_x_y_v.txt'}
+    'Lab1/Python lab1/Raw_data_exp\\Eksp10_t_x_y_v.txt']
     return file_set
 
 def get_final_speed(filepath):
@@ -154,18 +154,18 @@ def get_array_from_files(parent_path, experiment_file_number, length_of_lists, e
     y_lists = [] 
     v_lists = []
     
-    for filepath in filepaths:
-        t_list, x_list, y_list, v_list = get_lists_from_file(filepath)
-        experiment_lists.append([t_list, x_list, y_list, v_list])
-        t_lists.append(t_list)
-        x_lists.append(x_list)
-        y_lists.append(y_list)
-        v_lists.append(v_list)
-    
-    comp_t_list = t_lists[experiment_file_number]
-    comp_x_list = x_lists[experiment_file_number]
-    comp_y_list = y_lists[experiment_file_number]
-    comp_v_list = v_lists[experiment_file_number]
+    filepath = filepaths[experiment_file_number]
+    t_list, x_list, y_list, v_list = get_lists_from_file(filepath)
+    experiment_lists.append([t_list, x_list, y_list, v_list])
+    t_lists.append(t_list)
+    x_lists.append(x_list)
+    y_lists.append(y_list)
+    v_lists.append(v_list)
+
+    comp_t_list = t_list
+    comp_x_list = x_list
+    comp_y_list = y_list
+    comp_v_list = v_list
 
     formated_t_array = np.array(format_list_length(comp_t_list, length_of_lists))
     formated_x_array = np.array(format_list_length(comp_x_list, length_of_lists))

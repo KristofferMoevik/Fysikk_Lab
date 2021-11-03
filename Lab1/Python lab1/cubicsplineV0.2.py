@@ -115,26 +115,26 @@ def t_x(Nx, v_x):
         times = np.append(times, [time])
     return times
 
-def x_t(Nx, v_x):
-    time = 0
-    times = np.array([0])
-    for i in range(1,Nx):
-        delta_t = (2*dx)/(v_x[i-1] + v_x[i])
-        time = time + delta_t
-        times = np.append(times, [time])
-    x_t_list = []
-    for xt in range(0,Nx):
-        x = 0
-        for ii in range(0, len(times)):
-            t = times[ii]
-            if t >= times[xt]:
-                x_t_list.append(ii)
-                break
-    return x_t_list
+# def x_t(Nx, v_x):
+#     time = 0
+#     times = np.array([0])
+#     for i in range(1,Nx):
+#         delta_t = (2*dx)/(v_x[i-1] + v_x[i])
+#         time = time + delta_t
+#         times = np.append(times, [time])
+#     x_t_list = []
+#     for xt in range(0,Nx):
+#         x = 0
+#         for ii in range(0, len(times)):
+#             t = times[ii]
+#             if t >= times[xt]:
+#                 x_t_list.append(ii)
+#                 break
+#     return x_t_list
 
 
 K = np.asarray( d2y/(((1 + dy**2)**(3/2))) )
-v_x = np.asarray( np.sqrt((2*g*(y[0] - y))/1+c) )
+v_x = np.asarray( np.sqrt((2*g*(y[0] - y))/(1+c)) )
 a = np.square(v_x)*K
 angle = np.arctan(dy)
 angle_deg = np.arctan(dy) * 180/3.14
@@ -164,12 +164,12 @@ plt.show()
 #baneform.savefig("baneform.png", bbox_inches='tight')
 #baneform.savefig("baneform.eps", bbox_inches='tight')
 
-v_x_plt = plt.figure('v(x)',figsize=(12,6))
+v_x_plt = plt.figure('',figsize=(12,6))
 plt.plot(x,v_x)
 plt.plot(comp_x_array, comp_v_array)
-plt.title('v(x)')
-plt.xlabel('$x$ (m)',fontsize=20)
-plt.ylabel('$y(x)$ (m)',fontsize=20)
+plt.title('')
+plt.xlabel('$x$ m',fontsize=20)
+plt.ylabel('$v(x)$ m/S',fontsize=20)
 plt.grid()
 plt.show()
 
@@ -221,10 +221,11 @@ plt.ylabel('$|v(t)|$ (m)',fontsize=20)
 plt.grid()
 plt.show()
 
-t_x_plt = plt.figure('t(x)',figsize=(12,6))
+t_x_plt = plt.figure('',figsize=(12,6))
 plt.plot(t_x(Nx, v_x), x)
-plt.title('t(x)')
-plt.xlabel('$t(s)$ (m)',fontsize=20)
+plt.plot(comp_t_array, comp_x_array)
+plt.title('')
+plt.xlabel('$t$ (s)',fontsize=20)
 plt.ylabel('$|x|$ (m)',fontsize=20)
 plt.grid()
 plt.show()
