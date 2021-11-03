@@ -148,6 +148,7 @@ f_N = np.abs(f/N)
 #         print("itteration : " , i)
 #         print("   f/N : ", f_N[i], "   N : ", N[i], "   f : ", f[i], "   dy: ", dy[i])
 
+# Bruker 'Lab1/Python lab1/Raw_data_exp\\Eksp5_t_x_y_v.txt'
 comp_t_array, comp_x_array, comp_y_array, comp_v_array = data_util.get_array_from_files("Lab1/Python lab1/Raw_data_exp", 4, 1401, 0.03)
 
 #Eksempel: Plotter banens form y(x)
