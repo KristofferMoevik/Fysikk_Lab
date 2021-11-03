@@ -149,7 +149,7 @@ f_N = np.abs(f/N)
 #         print("   f/N : ", f_N[i], "   N : ", N[i], "   f : ", f[i], "   dy: ", dy[i])
 
 comp_t_array, comp_x_array, comp_y_array, comp_v_array = data_util.get_array_from_files("Lab1/Python lab1/Raw_data_exp", 4, 1401, 0.03)
-comp_v_array[0] = 0
+
 #Eksempel: Plotter banens form y(x)
 baneform = plt.figure('y(x)',figsize=(12,6))
 plt.plot(x,y,xfast,yfast,'*')
@@ -164,10 +164,14 @@ plt.show()
 #baneform.savefig("baneform.pdf", bbox_inches='tight')
 #baneform.savefig("baneform.png", bbox_inches='tight')
 #baneform.savefig("baneform.eps", bbox_inches='tight')
-
+comp_x_array_mod = comp_x_array + 0.04
+comp_v_array_mod = np.insert(comp_v_array, 0, comp_v_array[0])
+comp_x_array_mod = np.insert(comp_x_array_mod, 0, 0)
+comp_v_array_mod = np.insert(comp_v_array_mod, 0, 0)
+comp_x_array_mod = np.insert(comp_x_array_mod, 0, 0)
 v_x_plt = plt.figure('',figsize=(12,6))
 plt.plot(x,v_x)
-plt.plot(comp_x_array, comp_v_array)
+plt.plot(comp_x_array_mod, comp_v_array_mod)
 plt.title('')
 plt.xlabel('$x$ m',fontsize=20)
 plt.ylabel('$v(x)$ m/S',fontsize=20)
