@@ -149,6 +149,7 @@ f_N = np.abs(f/N)
 #         print("   f/N : ", f_N[i], "   N : ", N[i], "   f : ", f[i], "   dy: ", dy[i])
 
 comp_t_array, comp_x_array, comp_y_array, comp_v_array = data_util.get_array_from_files("Lab1/Python lab1/Raw_data_exp", 4, 1401, 0.03)
+comp_v_array[0] = 0
 #Eksempel: Plotter banens form y(x)
 baneform = plt.figure('y(x)',figsize=(12,6))
 plt.plot(x,y,xfast,yfast,'*')
