@@ -15,16 +15,17 @@ def get_filepaths(folder):
             rel_file = "Lab1/Python lab1/Raw_data_exp" + rel_file[1:]
             file_set.add(rel_file)
 
-    file_set = ['Lab1/Python lab1/Raw_data_exp\\Eksp1_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp2_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp3_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp4_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp5_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp6_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp7_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp8_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp9_t_x_y_v.txt', 
-    'Lab1/Python lab1/Raw_data_exp\\Eksp10_t_x_y_v.txt']
+    file_set = [
+    'Lab1/Python lab1/Raw_data_exp/Eksp1_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp2_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp4_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp3_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp5_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp6_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp7_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp8_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp9_t_x_y_v.txt', 
+    'Lab1/Python lab1/Raw_data_exp/Eksp10_t_x_y_v.txt']
     return file_set
 
 def get_final_speed(filepath):
@@ -80,8 +81,8 @@ def print_AFS_SD_SE():
     standard_error = get_standard_error(standard_deviation, len(final_speeds))
     print("average final speed: ", average_final_speed, ", standard_deviation: ", standard_deviation, "standard error: ", standard_error)
 
-
 def get_lists_from_file(filepath):
+    #Lab1/Python lab1/Raw_data_exp/Eksp5_t_x_y_v.txt
     f = open(filepath, "r")
     t = 0
     t_list = []
@@ -89,7 +90,7 @@ def get_lists_from_file(filepath):
     x_list = []
     y = 0
     y_list = []
-    v = ""
+    v = 0
     v_list = []
     for line in f:
         pos = 0
@@ -107,6 +108,12 @@ def get_lists_from_file(filepath):
             elif(pos == 3):
                 if(letter.isnumeric() or letter == '.'):
                     v = v + letter
+                elif(letter == "N"):
+                    if(len(v_list) == 0):
+                        v = 0
+                    else:
+                        v = v_list[-1]
+
 
             if(letter == '\t'):
                 pos += 1
@@ -146,7 +153,8 @@ def format_list_length(list, wanted_length):
     
     return new_list
 
-def get_array_from_files(parent_path, experiment_file_number, length_of_lists, error_compensation):  # "Lab1/Python lab1/Raw_data_exp"
+def get_array_from_files_with_set_length(parent_path, experiment_file_number, length_of_lists, error_compensation):  # "Lab1/Python lab1/Raw_data_exp"
+    experiment_file_number -= 1
     filepaths = get_filepaths(parent_path)
     experiment_lists = [] # shape [[t_list1, x_list1, y_list1, v_list1], [t_list2, x_list2, y_list2, [v21, v22, v23]] , ....]
     t_lists = []
@@ -174,3 +182,15 @@ def get_array_from_files(parent_path, experiment_file_number, length_of_lists, e
     
     return formated_t_array, formated_x_array, formated_y_array, formated_v_array
 
+def get_array_from_files_with_raw_length(parent_path, experiment_file_number):  # "Lab1/Python lab1/Raw_data_exp"
+    experiment_file_number -= 1
+    filepaths = get_filepaths(parent_path)
+    filepath = filepaths[experiment_file_number]
+    t_list, x_list, y_list, v_list = get_lists_from_file(filepath)
+
+    t_array = np.array(t_list)
+    x_array = np.array(x_list)
+    y_array = np.array(y_list)
+    v_array = np.array(v_list)
+    
+    return t_array, x_array, y_array, v_array
